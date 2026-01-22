@@ -8,10 +8,13 @@ export default function Header() {
   return (
     <header className="fixed top-6 left-0 right-0 z-50">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="flex items-center justify-between rounded-2xl bg-white px-6 py-3 shadow-lg ring-1 ring-black/5">
+        <div
+          className="flex items-center justify-between rounded-2xl px-6 py-3 shadow-lg ring-1 ring-black/5"
+          style={{ backgroundColor: "#549c8c" }} // 👈 Breaker Bay
+        >
           {/* LOGO */}
           <Link href="/" className="flex items-center">
-            <div className="rounded-lg bg-[#f1f5f9] px-2 py-1">
+            <div className="rounded-lg px-2 py-1">
               <Image
                 src="/logo.png"
                 alt="Datarsoft Logo"
@@ -23,17 +26,17 @@ export default function Header() {
           </Link>
 
           {/* CENTER MENU */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
-            <Link href="/services" className="hover:text-cerulean">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-white">
+            <Link href="/services" className="hover:text-white/80 transition">
               Services
             </Link>
-            <Link href="/portfolio" className="hover:text-cerulean">
+            <Link href="/portfolio" className="hover:text-white/80 transition">
               Portfolio
             </Link>
-            <Link href="/pricing" className="hover:text-cerulean">
+            <Link href="/pricing" className="hover:text-white/80 transition">
               Pricing
             </Link>
-            <Link href="/faq" className="hover:text-cerulean">
+            <Link href="/faq" className="hover:text-white/80 transition">
               FAQ
             </Link>
           </nav>
@@ -43,7 +46,7 @@ export default function Header() {
             {/* CTA */}
             <Link
               href="/contact"
-              className="rounded-xl bg-black px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 transition"
+              className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-[#549c8c] hover:bg-white/90 transition"
             >
               Book a call
             </Link>
