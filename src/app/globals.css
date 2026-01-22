@@ -3,6 +3,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Custom color palette */
+  --cerulean: #0593e2;
+  --blizzard-blue: #b4dbf3;
+  --breaker-bay: #549c8c;
+  --hippie-blue: #4a91a9;
 }
 
 @theme inline {
