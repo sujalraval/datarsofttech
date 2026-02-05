@@ -1,11 +1,11 @@
-import ComplianceSecuritySection from "@/component/Home/ComplianceSecuritySection";
-import Hero from "@/component/Home/Hero";
-import KeyFeaturesSection from "@/component/Home/KeyFeaturesSection";
-import Services from "@/component/Home/Services";
-import ServicesSection from "@/component/Home/ServicesSection";
-import StrategyCTAWithForm from "@/component/Home/StrategyCTAWithForm";
-import TrustedPartners from "@/component/Home/TrustedPartners";
-import TrustSection from "@/component/Home/TrustSection";
+import Hero from "@/components/home/sections/Hero";
+import TrustedPartners from "@/components/home/sections/TrustedPartners";
+import Services from "@/components/home/sections/Services";
+import EnhancedServicesPreview from "@/components/home/sections/EnhancedServicesPreview";
+import ProcessSection from "@/components/home/sections/ProcessSection";
+import WhyChooseUsSection from "@/components/home/sections/WhyChooseUsSection";
+import FinalCTASection from "@/components/home/sections/FinalCTASection";
+import GIGWComplianceSection from "@/components/home/sections/GIGWComplianceSection";
 
 export default function HomePage() {
   return (
@@ -13,11 +13,11 @@ export default function HomePage() {
       <Hero />
       <TrustedPartners />
       <Services />
-      <ServicesSection />
-      <TrustSection />
-      <ComplianceSecuritySection />
-      <StrategyCTAWithForm />
-      <KeyFeaturesSection />
+      <EnhancedServicesPreview />
+      <GIGWComplianceSection />
+      <ProcessSection />
+      <WhyChooseUsSection />
+      <FinalCTASection />
     </main>
   );
 }

@@ -3,16 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3003",
+    "dev:unix": "PORT=3001 next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "set PORT=3001 && next start",
+    "start:unix": "PORT=3001 next start",
     "lint": "eslint"
   },
   "dependencies": {
     "lucide-react": "^0.562.0",
     "next": "16.1.2",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.5",
+    "@radix-ui/react-slot": "^1.1.1",
+    "class-variance-authority": "^1.0.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

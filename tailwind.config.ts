@@ -9,7 +9,45 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Your custom color palette
+        // New institutional color palette
+        primary: {
+          blue: {
+            DEFAULT: "#0494e2",
+            50: "#e6f7ff",
+            100: "#d1efff",
+            200: "#b4d8f0",
+            300: "#90bbdf",
+            400: "#6ca0d1",
+            500: "#0494e2",
+            600: "#027abc",
+            700: "#035a96",
+            800: "#044a70",
+            900: "#053a56",
+          },
+        },
+        logo: {
+          blue: {
+            DEFAULT: "#0494e2",
+            light: "#b4d8f0",
+          },
+        },
+        "primary-foreground": "#ffffff",
+        navy: {
+          dark: "#0F172A",
+          DEFAULT: "#334155",
+          light: "#94A3B8",
+        },
+        surface: {
+          DEFAULT: "#F1F5F9",
+          border: "#E2E8F0",
+        },
+        success: {
+          green: "#16A34A",
+        },
+        teal: {
+          DEFAULT: "#22B8B8",
+        },
+        // Legacy colors (keep for compatibility)
         cerulean: {
           DEFAULT: "#0593e2",
           50: "#e6f4ff",

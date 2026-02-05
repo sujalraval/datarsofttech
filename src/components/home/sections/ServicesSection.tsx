@@ -82,7 +82,7 @@ export default function ServicesSection() {
   const ActiveIcon = activeService.icon;
 
   return (
-    <section className="w-full bg-gradient-to-br from-slate-50 to-indigo-50 py-24">
+    <section className="w-full bg-white py-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
