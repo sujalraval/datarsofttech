@@ -1,17 +1,15 @@
-import AboutCompanySection from "@/components/home/sections/AboutCompanySection";
-import ProcessSection from "@/components/home/sections/ProcessSection";
-import WhyChooseUsSection from "@/components/home/sections/WhyChooseUsSection";
-import FinalCTASection from "@/components/home/sections/FinalCTASection";
-import TrustedPartners from "@/components/home/sections/TrustedPartners";
+import CompanyStory from "@/components/about/sections/CompanyStory";
+import LeadershipTeam from "@/components/about/sections/LeadershipTeam";
+import AchievementsRecognition from "@/components/about/sections/AchievementsRecognition";
+import AboutCTA from "@/components/about/sections/AboutCTA";
 
 export default function AboutPage() {
   return (
     <main>
-      <AboutCompanySection />
-      <TrustedPartners />
-      <ProcessSection />
-      <WhyChooseUsSection />
-      <FinalCTASection />
+      <CompanyStory />
+      <LeadershipTeam />
+      <AchievementsRecognition />
+      <AboutCTA />
     </main>
   );
 }

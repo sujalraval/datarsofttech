@@ -12,10 +12,13 @@ export default function MobileNavigation() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  // Lock body scroll
+  // Handle body scroll and focus management
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      // Set focus to the close button when menu opens
+      const closeBtn = document.querySelector('[aria-label="Close navigation"]') as HTMLElement;
+      closeBtn?.focus();
     } else {
       document.body.style.overflow = "";
     }
@@ -49,7 +52,7 @@ export default function MobileNavigation() {
         <div className="fixed inset-0 z-50 lg:hidden">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ease-out"
             onClick={closeMenu}
           />
 
@@ -57,28 +60,44 @@ export default function MobileNavigation() {
           <aside
             className="
               absolute right-0 top-0
-              h-[100dvh] w-80 max-w-[90vw]
-              bg-slate-900/80 backdrop-blur-md
+              h-[100dvh] w-full max-w-[90vw] min-w-[280px]
+              bg-slate-900/90 backdrop-blur-lg
               flex flex-col
-              animate-slide-in
+              transition-all duration-300 ease-out
+              transform translate-x-full
+              shadow-2xl
+              data-[state=open]:translate-x-0
             "
             role="dialog"
             aria-modal="true"
+            aria-labelledby="mobile-menu-title"
           >
             {/* Panel Header */}
-            <div className="flex justify-end h-16 px-6 border-b border-white/10">
+            <div className="flex items-center justify-between h-16 px-6 border-b border-white/10">
+              <div className="flex items-center">
+                <Link href={ROUTES.HOME} className="flex items-center" onClick={closeMenu}>
+                  <img 
+                    src="/logo.png" 
+                    alt="Datarsoft" 
+                    width={100} 
+                    height={28} 
+                    className="w-20 h-auto object-contain"
+                  />
+                </Link>
+              </div>
               <button
                 onClick={closeMenu}
-                className="p-2 rounded-lg text-white hover:bg-white/10"
+                className="p-2 rounded-lg text-white hover:bg-white/10 transition"
                 aria-label="Close navigation"
+                aria-controls="mobile-menu-nav"
               >
                 <X className="h-6 w-6" />
               </button>
             </div>
 
             {/* Navigation */}
-            <nav className="flex-1 overflow-y-auto px-6 py-6">
-              <ul className="space-y-2">
+            <nav id="mobile-menu-nav" className="flex-1 overflow-y-auto px-6 pt-6 pb-8" aria-label="mobile navigation">
+              <ul className="space-y-1">
                 {[
                   { key: "home", label: "Home", path: ROUTES.HOME },
                   { key: "products", label: "Products", path: ROUTES.PRODUCTS },
@@ -89,17 +108,24 @@ export default function MobileNavigation() {
                   <li key={item.key}>
                     <Link
                       href={item.path}
-                      onClick={closeMenu}
+                      onClick={(e) => {
+                        closeMenu();
+                        // Smooth scroll to top after navigation
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
                       className={`
-                        block rounded-xl px-4 py-3 text-base font-medium
-                        transition
+                        block rounded-lg px-4 py-3.5 text-base font-medium
+                        transition-all duration-200
                         ${COMPONENT_COLORS.navigation.link.base}
                         ${
                           pathname === item.path
-                            ? "bg-white/10 text-[#0494e2]"
-                            : "hover:bg-white/5 hover:text-[#0494e2]"
+                            ? "bg-white/15 text-[#0494e2] font-semibold"
+                            : "hover:bg-white/10 hover:text-[#0494e2]"
                         }
+                        border-l-2 border-transparent
+                        hover:border-[#0494e2]
                       `}
+                      tabIndex={isOpen ? 0 : -1}
                     >
                       {item.label}
                     </Link>
