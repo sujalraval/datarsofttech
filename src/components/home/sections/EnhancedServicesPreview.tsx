@@ -141,8 +141,6 @@ export default function EnhancedServicesPreview() {
             );
           })}
         </div>
-
-
       </div>
     </section>
   );

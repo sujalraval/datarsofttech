@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+/* ---------------------------
+   Global layout fixes
+---------------------------- */
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent fixed elements from causing overflow */
+#__next {
+  width: 100%;
+  overflow-x: hidden;
+}

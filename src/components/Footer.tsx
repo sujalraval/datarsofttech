@@ -24,7 +24,7 @@ export default function Footer() {
     console.log("Subscribing email:", email);
     setIsSubscribed(true);
     setEmail("");
-    
+
     // Reset success message after 3 seconds
     setTimeout(() => setIsSubscribed(false), 3000);
   };
@@ -41,8 +41,9 @@ export default function Footer() {
             </div>
 
             <p className="text-white/90 leading-relaxed">
-              Leading technology company delivering custom ERP systems and digital 
-              platforms for universities, colleges, and government institutions.
+              Leading technology company delivering custom ERP systems and
+              digital platforms for universities, colleges, and government
+              institutions.
             </p>
 
             {/* SOCIALS */}
@@ -57,7 +58,7 @@ export default function Footer() {
                   >
                     <Icon size={18} />
                   </a>
-                ),
+                )
               )}
             </div>
           </div>
@@ -112,14 +113,21 @@ export default function Footer() {
             {/* NEWSLETTER */}
             <div className="mb-8">
               <h4 className="text-lg font-semibold mb-4">Stay Updated</h4>
-              
+
               {isSubscribed ? (
                 <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-4 text-green-100">
-                  <p className="text-sm font-medium">Thank you for subscribing!</p>
-                  <p className="text-xs mt-1">You&apos;ll receive our latest updates and insights.</p>
+                  <p className="text-sm font-medium">
+                    Thank you for subscribing!
+                  </p>
+                  <p className="text-xs mt-1">
+                    You&apos;ll receive our latest updates and insights.
+                  </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubscribe} className="flex items-center bg-white/10 rounded-full overflow-hidden border border-white/20">
+                <form
+                  onSubmit={handleSubscribe}
+                  className="flex items-center bg-white/10 rounded-full overflow-hidden border border-white/20"
+                >
                   <input
                     type="email"
                     value={email}
@@ -129,7 +137,7 @@ export default function Footer() {
                     placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent text-white"
                     required
                   />
-                  <button 
+                  <button
                     type="submit"
                     className="px-4 py-3 text-white hover:text-white/80 transition-colors"
                     aria-label="Subscribe to newsletter"
@@ -138,9 +146,10 @@ export default function Footer() {
                   </button>
                 </form>
               )}
-              
+
               <p className="text-white/80 text-xs mt-3">
-                Get industry insights, case studies, and technology updates delivered to your inbox.
+                Get industry insights, case studies, and technology updates
+                delivered to your inbox.
               </p>
             </div>
 
@@ -151,18 +160,31 @@ export default function Footer() {
                 <li className="flex gap-3 items-center">
                   <Phone size={16} className="flex-shrink-0" />
                   <div>
-                    <a href="tel:+918320566649" className="hover:text-white transition">+91 8320566649</a>
-                    <div className="text-xs text-white/70 mt-1">Mon-Fri 9:00 AM - 6:00 PM IST</div>
+                    <a
+                      href="tel:+918320566649"
+                      className="hover:text-white transition"
+                    >
+                      +91 8320566649
+                    </a>
+                    <div className="text-xs text-white/70 mt-1">
+                      Mon-Fri 9:00 AM - 6:00 PM IST
+                    </div>
                   </div>
                 </li>
                 <li className="flex gap-3 items-center">
                   <Mail size={16} className="flex-shrink-0" />
-                  <a href="mailto:info@datarsoft.tech" className="hover:text-white transition">info@datarsoft.tech</a>
+                  <a
+                    href="mailto:info@datarsoft.tech"
+                    className="hover:text-white transition"
+                  >
+                    info@datarsoft.tech
+                  </a>
                 </li>
                 <li className="flex gap-3">
                   <MapPin size={16} className="flex-shrink-0 mt-1" />
                   <div>
-                    311, University Plaza, Navrangpura<br />
+                    311, University Plaza, Navrangpura
+                    <br />
                     Ahmedabad – 380009, Gujarat, India
                   </div>
                 </li>
