@@ -58,7 +58,7 @@ export default function MobileNavigation() {
             className="
               absolute right-0 top-0
               h-[100dvh] w-80 max-w-[90vw]
-              bg-slate-900 shadow-2xl
+              bg-slate-900/80 backdrop-blur-md
               flex flex-col
               animate-slide-in
             "
@@ -66,8 +66,7 @@ export default function MobileNavigation() {
             aria-modal="true"
           >
             {/* Panel Header */}
-            <div className="flex items-center justify-between h-16 px-6 border-b border-white/10">
-              <h2 className="text-lg font-semibold text-white">Navigation</h2>
+            <div className="flex justify-end h-16 px-6 border-b border-white/10">
               <button
                 onClick={closeMenu}
                 className="p-2 rounded-lg text-white hover:bg-white/10"
@@ -110,21 +109,13 @@ export default function MobileNavigation() {
             </nav>
 
             {/* CTAs */}
-            <div className="border-t border-white/10 px-6 py-6 space-y-3">
+            <div className="border-t border-white/10 px-6 py-6">
               <Link
                 href={ROUTES.CONTACT}
                 onClick={closeMenu}
                 className="block w-full rounded-xl bg-[#0494e2] py-3 text-center font-semibold text-white hover:bg-[#027abc]"
               >
                 Get Quote
-              </Link>
-
-              <Link
-                href={ROUTES.STRATEGY_CALL}
-                onClick={closeMenu}
-                className="block w-full rounded-xl border border-white/20 py-3 text-center font-semibold text-white hover:bg-white/10"
-              >
-                Request Strategy Call
               </Link>
             </div>
           </aside>
