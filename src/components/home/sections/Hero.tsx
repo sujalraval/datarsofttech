@@ -1,16 +1,14 @@
 import Link from "next/link";
 import { TYPOGRAPHY } from "@/styles/typography";
 import { SECTION_SPACING } from "@/styles/spacing";
-import { COLORS } from "@/constants/colors";
 import {
   ArrowRight,
   Terminal,
   ShieldCheck,
   Zap,
-  Activity,
-  Users,
   CheckCircle,
 } from "lucide-react";
+import InteractiveHeroOS from "./InteractiveHeroOS";
 
 export default function Hero() {
   return (
@@ -122,141 +120,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN - The "OS" Interface (Mockup) */}
-          {/* Designed to look like FLAT, CLEAN Software, not a 3D object */}
-          {/* RIGHT COLUMN - Responsive OS Mock */}
+          {/* RIGHT COLUMN - Interactive ERP OS Experience */}
           <div className="lg:col-span-6 relative flex items-center justify-center">
-            <div
-              className="
-      relative w-full max-w-[420px] lg:max-w-none
-      bg-white border border-slate-200 rounded-2xl
-      shadow-2xl overflow-hidden backdrop-blur-xl flex flex-col
-    "
-            >
-              {/* OS Header */}
-              <div className="h-12 border-b border-slate-200 bg-slate-50 flex items-center px-4 gap-4">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-amber-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                </div>
-                <div className="h-4 w-28 bg-slate-200 rounded-md" />
-              </div>
-
-              {/* DASHBOARD CONTENT */}
-              <div
-                className="
-        p-4 sm:p-6
-        grid gap-4
-        grid-cols-1
-        lg:grid-cols-12 lg:grid-rows-6 lg:gap-6
-      "
-              >
-                {/* Active Enrollment */}
-                <div className="lg:col-span-8 lg:row-span-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-xs sm:text-sm text-slate-600">
-                        Active Enrollment
-                      </h3>
-                      <div className="text-2xl sm:text-3xl font-bold text-slate-900">
-                        12,450
-                      </div>
-                    </div>
-                    <div className="px-2 py-1 rounded bg-green-100 text-green-700 text-[10px] sm:text-xs font-medium">
-                      +12.5%
-                    </div>
-                  </div>
-
-                  <div className="flex items-end h-24 sm:h-32 gap-1.5">
-                    {[35, 50, 45, 70, 60, 85, 55, 90, 80, 95, 75, 60].map(
-                      (h, i) => (
-                        <div
-                          key={i}
-                          className="flex-1 bg-[#b4d8f0] rounded-t-sm"
-                          style={{ height: `${h}%` }}
-                        />
-                      )
-                    )}
-                  </div>
-                </div>
-
-                {/* Retention */}
-                <div className="lg:col-span-4 lg:row-span-3 bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col justify-between">
-                  <div className="text-xs sm:text-sm text-slate-600 flex items-center gap-2">
-                    <Activity className="w-4 h-4" />
-                    Retention
-                  </div>
-
-                  <div className="text-3xl sm:text-4xl font-bold text-slate-900">
-                    94.2<span className="text-base text-slate-500">%</span>
-                  </div>
-
-                  <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-cyan-500 w-[94.2%]" />
-                  </div>
-                </div>
-
-                {/* System Log */}
-                <div className="lg:col-span-4 lg:row-span-3 bg-slate-50 border border-slate-200 rounded-xl p-4">
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-[10px] sm:text-xs font-semibold text-slate-600 uppercase">
-                      System Log
-                    </span>
-                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex gap-2 p-2 bg-white border border-slate-200 rounded">
-                      <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full mt-1" />
-                      <div>
-                        <div className="text-xs font-medium">
-                          Enrollment synced
-                        </div>
-                        <div className="text-[10px] text-slate-500">
-                          Just now
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-2 p-2 bg-white border border-slate-200 rounded opacity-70">
-                      <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-1" />
-                      <div>
-                        <div className="text-xs font-medium">
-                          Backup completed
-                        </div>
-                        <div className="text-[10px] text-slate-500">
-                          2 hrs ago
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Faculty Portal */}
-                <div className="lg:col-span-8 lg:row-span-2">
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-purple-100 rounded-lg text-purple-600">
-                        <Users className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-sm font-medium">
-                          Faculty Portal
-                        </div>
-                        <div className="text-xs text-slate-500">
-                          Manage access
-                        </div>
-                      </div>
-                    </div>
-                    <ArrowRight className="w-4 h-4 text-slate-500" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Glow */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-[#b4d8f0] to-cyan-200 rounded-2xl blur-xl opacity-25 -z-10" />
+            <InteractiveHeroOS />
           </div>
         </div>
       </div>
