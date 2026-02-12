@@ -22,6 +22,7 @@ import {
   UserPlus,
   Cloud,
   ChevronRight,
+  Building,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -38,10 +39,10 @@ interface Solution {
 /* ---------------- DATA ---------------- */
 const solutions: Solution[] = [
   {
-    title: "Alumni Management System",
+    title: "Alumni Portal System",
     subtitle: "Alumni Management",
-    description: "Connect and engage with your alumni community effectively.",
-    slug: "/solutions/alumni-management",
+    description: "Building lifelong connections beyond campus with global networking.",
+    slug: "/solutions/alumni-portal",
     icon: Users,
     category: "Community",
   },
@@ -64,16 +65,16 @@ const solutions: Solution[] = [
   {
     title: "Conference Management System",
     subtitle: "Conference Management",
-    description: "End-to-end platform for organizing conferences and events.",
+    description: "One Platform. Complete Conference Lifecycle for academic events.",
     slug: "/solutions/conference-management",
     icon: CalendarDays,
     category: "Events",
   },
   {
-    title: "Faculty Management",
-    subtitle: "Faculty Management Aacharyaa-J",
-    description: "Manage faculty workload, performance, and activities.",
-    slug: "/solutions/faculty-management",
+    title: "Aacharyaa Faculty Management",
+    subtitle: "Complete Academic Profile Management",
+    description: "One Platform for Your Complete Academic Profile. Manage. Showcase. Report.",
+    slug: "/solutions/aacharyaa-faculty-management",
     icon: GraduationCap,
     category: "Academic",
   },
@@ -119,10 +120,34 @@ const solutions: Solution[] = [
     category: "Operations",
   },
   {
+    title: "Institutional Website & Campus Portal",
+    subtitle: "Institutional Portal",
+    description: "Centralized platform for universities and multi-campus institutions.",
+    slug: "/solutions/institutional-website-campus-portal",
+    icon: Building,
+    category: "Institution",
+  },
+  {
+    title: "Online Recruitment System",
+    subtitle: "Academic Hiring",
+    description: "Smart & compliant platform for faculty recruitment with UGC compliance.",
+    slug: "/solutions/online-recruitment-system",
+    icon: Users,
+    category: "HR",
+  },
+  {
+    title: "Research Journal",
+    subtitle: "Academic Publishing",
+    description: "Modern research journal platform for universities and departments.",
+    slug: "/solutions/research-journal",
+    icon: BookOpen,
+    category: "Research",
+  },
+  {
     title: "Online Admission Portal",
     subtitle: "Online Admission",
     description: "Digital admission process from application to enrollment.",
-    slug: "/solutions/online-admission",
+    slug: "/solutions/online-admission-portal",
     icon: ClipboardList,
     category: "Student",
   },
@@ -151,10 +176,10 @@ const solutions: Solution[] = [
     category: "Research",
   },
   {
-    title: "Recruitment Portal",
-    subtitle: "Recruitment Portal",
-    description: "Streamline your hiring process with our recruitment system.",
-    slug: "/solutions/recruitment-portal",
+    title: "Online Recruitment System",
+    subtitle: "Academic Hiring",
+    description: "Smart & compliant platform for faculty recruitment with UGC compliance.",
+    slug: "/solutions/online-recruitment-system",
     icon: UserPlus,
     category: "Operations",
   },
@@ -224,7 +249,7 @@ export default function SolutionsSection() {
       : solutions.filter((s) => s.category === activeCategory);
 
   return (
-    <section className="relative bg-white py-24 border-y border-slate-200">
+    <section id="solutions" className="relative bg-white py-24 border-y border-slate-200">
       {/* Subtle background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.05),transparent_50%)] pointer-events-none"></div>
 

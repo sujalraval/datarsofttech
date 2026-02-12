@@ -9,6 +9,13 @@ export const ROUTES = {
   SECURITY: "/#security",
   CASE_STUDIES: "/#case-studies",
 
+  AACHARYAA: "/solutions/aacharyaa-faculty-management",
+  ALUMNI_PORTAL: "/solutions/alumni-portal",
+  CONFERENCE_MANAGEMENT: "/solutions/conference-management",
+  ONLINE_ADMISSION_PORTAL: "/solutions/online-admission-portal",
+  INSTITUTIONAL_WEBSITE_PORTAL: "/solutions/institutional-website-campus-portal",
+  ONLINE_RECRUITMENT_SYSTEM: "/solutions/online-recruitment-system",
+  RESEARCH_JOURNAL: "/solutions/research-journal",
   ABOUT: "/about",
   CONTACT: "/contact",
 
@@ -21,6 +28,31 @@ export const NAVIGATION_ITEMS = [
     key: "solutions",
     label: "Solutions",
     path: ROUTES.SOLUTIONS,
+  },
+  {
+    key: "aacharyaa",
+    label: "Aacharyaa",
+    path: ROUTES.AACHARYAA,
+  },
+  {
+    key: "online-admission",
+    label: "Online Admission Portal",
+    path: ROUTES.ONLINE_ADMISSION_PORTAL,
+  },
+  {
+    key: "institutional-website",
+    label: "Institutional Website Portal",
+    path: ROUTES.INSTITUTIONAL_WEBSITE_PORTAL,
+  },
+  {
+    key: "recruitment-system",
+    label: "Online Recruitment System",
+    path: ROUTES.ONLINE_RECRUITMENT_SYSTEM,
+  },
+  {
+    key: "research-journal",
+    label: "Research Journal",
+    path: ROUTES.RESEARCH_JOURNAL,
   },
   {
     key: "products",

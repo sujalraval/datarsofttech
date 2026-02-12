@@ -47,6 +47,12 @@ const config: Config = {
         teal: {
           DEFAULT: "#22B8B8",
         },
+        // Brand colors using consistent naming
+        "brand-blue": {
+          DEFAULT: "#0494e2",
+          light: "#b4d8f0",
+          dark: "#027abc",
+        },
         // Legacy colors (keep for compatibility)
         cerulean: {
           DEFAULT: "#0593e2",

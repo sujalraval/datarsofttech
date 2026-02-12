@@ -46,15 +46,15 @@ const modules: ModuleData[] = [
   },
   {
     id: 'faculty',
-    name: 'Faculty Management',
+    name: 'Aacharyaa Faculty Management',
     icon: GraduationCap,
-    description: 'Workload distribution and performance tracking',
+    description: 'Complete academic profile management and NAAC compliance',
     metrics: [
-      { label: 'Total Faculty', value: 847, trend: 'up', change: '+3.1%' },
-      { label: 'Course Load', value: '28.4 hrs', trend: 'neutral' },
-      { label: 'Research Projects', value: 156, trend: 'up', change: '+22.7%' }
+      { label: 'Faculty Profiles', value: 847, trend: 'up', change: '+3.1%' },
+      { label: 'NAAC Compliance', value: 'Ready', trend: 'up' },
+      { label: 'Report Generation', value: 156, trend: 'up', change: '+22.7%' }
     ],
-    features: ['Workload management', 'Performance analytics', 'Resource allocation'],
+    features: ['Academic Profile Management', 'NAAC/NIRF Reporting', 'Auto CV Generation'],
     color: 'text-purple-600',
     gradient: 'from-purple-500 to-pink-500'
   },
