@@ -2,32 +2,28 @@
 
 import { useState, useEffect } from "react";
 import {
-  Users,
+  GraduationCap,
   FileText,
   Award,
   BookOpen,
   Calendar,
   BarChart3,
   Database,
-  CheckCircle,
+  Users,
   Star,
-  Building,
-  MessageCircle,
-  UserCheck,
-  Target,
-  ClipboardList,
-  Lock,
-  ShieldCheck,
-  TrendingUp,
-  GraduationCap,
-  UserPlus,
-  Archive,
   X,
   Upload,
   Download,
   Plus,
   Eye,
   Check,
+  Laptop,
+  DollarSign,
+  Calculator,
+  UserCheck,
+  TrendingUp,
+  Shield,
+  Smartphone,
 } from "lucide-react";
 import { TYPOGRAPHY } from "@/styles/typography";
 
@@ -56,16 +52,27 @@ interface OptionItem {
 }
 
 interface StatItem {
-  metric: string;
-  value: number;
-  trend: string;
+  paper: string;
+  citations: number;
+  impact: string;
+}
+
+interface PublicationItem {
+  title: string;
+  journal: string;
+  year: number;
+  citations: number;
+}
+
+interface TimelineItem {
+  year: string;
+  event: string;
 }
 
 interface EventItem {
   name: string;
   date: string;
-  location: string;
-  attendees: number;
+  type: string;
 }
 
 interface TemplateItem {
@@ -89,6 +96,8 @@ interface ModalContent {
   checklist?: ChecklistItem[];
   options?: OptionItem[];
   stats?: StatItem[];
+  publications?: PublicationItem[];
+  timeline?: TimelineItem[];
   events?: EventItem[];
   templates?: TemplateItem[];
   formats?: FormatItem[];
@@ -113,153 +122,140 @@ interface ModuleData {
   gradient: string;
 }
 
-// Module data configuration for Digital Admission Portal
+// Module data configuration for Student Information System
 const modules: ModuleData[] = [
   {
-    id: "lead-management",
-    name: "Lead Management",
-    icon: MessageCircle,
-    description: "Manage prospective student leads",
+    id: "student-enrollment",
+    name: "Student Enrollment",
+    icon: UserCheck,
+    description: "Manage student registration and enrollment",
     metrics: [
-      { label: "Total Leads", value: 1250, trend: "up", change: "+22.4%" },
-      { label: "Active Enquiries", value: 890, trend: "up", change: "+15.7%" },
-      { label: "Conversion Rate", value: "72%", trend: "up", change: "+8.2%" },
+      {
+        label: "Students Enrolled",
+        value: 1250,
+        trend: "up",
+        change: "+12.2%",
+      },
+      { label: "Active Courses", value: 89, trend: "up", change: "+5.7%" },
+      {
+        label: "Enrollments This Month",
+        value: 120,
+        trend: "up",
+        change: "+18.1%",
+      },
     ],
-    features: ["Lead Capture", "Follow-up Tracking", "Consultant Management"],
+    features: ["Registration Forms", "Course Selection", "Payment Processing"],
     color: "text-blue-600",
     gradient: "from-blue-500 to-cyan-500",
   },
   {
-    id: "application-processing",
-    name: "Application Processing",
-    icon: ClipboardList,
-    description: "Process and manage applications",
+    id: "attendance",
+    name: "Attendance Management",
+    icon: Calendar,
+    description: "Track and manage student attendance",
     metrics: [
+      { label: "Attendance Rate", value: "94%", trend: "up", change: "+2.4%" },
       {
-        label: "Applications Received",
-        value: 890,
+        label: "Biometric Records",
+        value: 1250,
         trend: "up",
-        change: "+31.1%",
+        change: "+12.2%",
       },
-      {
-        label: "Documents Verified",
-        value: 645,
-        trend: "up",
-        change: "+28.3%",
-      },
-      {
-        label: "Processing Time",
-        value: "2.3d",
-        trend: "down",
-        change: "-1.2d",
-      },
+      { label: "Automated Alerts", value: 320, trend: "up", change: "+22.1%" },
     ],
-    features: ["Document Verification", "Approval Workflow", "Status Tracking"],
+    features: ["Biometric Tracking", "Automated Reports", "Alert System"],
     color: "text-green-600",
     gradient: "from-green-500 to-emerald-500",
   },
   {
-    id: "faculty-review",
-    name: "Faculty Review",
+    id: "lms",
+    name: "Learning Management",
     icon: BookOpen,
-    description: "Review applications and make decisions",
+    description: "Course content and learning materials",
     metrics: [
+      { label: "Courses Active", value: 89, trend: "up", change: "+8.6%" },
       {
-        label: "Applications Pending",
-        value: 24,
-        trend: "down",
-        change: "-35.2%",
-      },
-      {
-        label: "Approved Applications",
-        value: 156,
+        label: "Learning Materials",
+        value: 2450,
         trend: "up",
-        change: "+42.7%",
+        change: "+15.7%",
       },
       {
-        label: "Avg. Review Time",
-        value: "2.3d",
-        trend: "down",
-        change: "-0.8d",
+        label: "Student Engagement",
+        value: "87%",
+        trend: "up",
+        change: "+3.2%",
       },
     ],
-    features: [
-      "Centralized Dashboard",
-      "Review Interface",
-      "Department Reports",
-    ],
+    features: ["Video Content", "Quizzes", "Progress Tracking"],
     color: "text-purple-600",
     gradient: "from-purple-500 to-pink-500",
   },
   {
-    id: "document-verification",
-    name: "Document Verification",
+    id: "examinations",
+    name: "Examinations",
     icon: FileText,
-    description: "Verify and authenticate documents",
+    description: "Exam scheduling and grading system",
     metrics: [
+      { label: "Exams Scheduled", value: 45, trend: "up", change: "+19.3%" },
       {
-        label: "Documents Verified",
-        value: 645,
+        label: "Results Processed",
+        value: 2340,
         trend: "up",
-        change: "+38.4%",
+        change: "+27.8%",
       },
       {
-        label: "Authenticity Rate",
-        value: "98%",
+        label: "Auto-Grading Rate",
+        value: "96%",
         trend: "up",
-        change: "+2.1%",
-      },
-      {
-        label: "Verification Speed",
-        value: "1.2d",
-        trend: "down",
-        change: "-0.5d",
+        change: "+1.5%",
       },
     ],
-    features: [
-      "Digital Verification",
-      "Authentication Checks",
-      "Record Keeping",
-    ],
+    features: ["Online Exams", "Auto Grading", "Result Management"],
     color: "text-amber-600",
     gradient: "from-amber-500 to-orange-500",
   },
   {
-    id: "crm-dashboard",
-    name: "CRM Dashboard",
-    icon: BarChart3,
-    description: "Real-time analytics and reporting",
+    id: "finance",
+    name: "Finance Management",
+    icon: DollarSign,
+    description: "Fee collection and financial aid",
     metrics: [
-      { label: "Dashboard Views", value: 18400, trend: "up", change: "+28.5%" },
-      { label: "Custom Reports", value: 67, trend: "up", change: "+12" },
-      { label: "Export Formats", value: 6, trend: "up", change: "+1" },
+      {
+        label: "Payments Processed",
+        value: 1890,
+        trend: "up",
+        change: "+42.1%",
+      },
+      { label: "Scholarships", value: 156, trend: "up", change: "+28.3%" },
+      { label: "Fine Collection", value: 89, trend: "up", change: "+15.7%" },
     ],
-    features: ["Real-time Analytics", "Custom Reports", "Data Export"],
+    features: ["Payment Gateway", "Scholarship Management", "Fine Tracking"],
     color: "text-teal-600",
     gradient: "from-teal-500 to-cyan-500",
   },
   {
-    id: "compliance",
-    name: "NAAC Compliance",
-    icon: ShieldCheck,
-    description: "Compliance and audit readiness",
+    id: "analytics",
+    name: "Performance Analytics",
+    icon: TrendingUp,
+    description: "Student performance and analytics",
     metrics: [
-      { label: "Compliance Score", value: "94%", trend: "up", change: "+4.2%" },
       {
-        label: "Audit Ready Records",
-        value: 645,
+        label: "Performance Reports",
+        value: 1890,
         trend: "up",
-        change: "+15.3%",
+        change: "+52.3%",
       },
-      { label: "Policy Aligned", value: "100%", trend: "neutral" },
+      { label: "Risk Alerts", value: 2100, trend: "up", change: "+48.7%" },
+      { label: "Insights Generated", value: 12, trend: "up", change: "+2" },
     ],
-    features: ["NAAC Alignment", "Audit Trails", "Policy Management"],
+    features: ["Dashboard", "Risk Alerts", "Trend Analysis"],
     color: "text-indigo-600",
     gradient: "from-indigo-500 to-purple-500",
   },
 ];
 
-export default function OnlineAdmissionPortalInteractiveDemo() {
+export default function StudentInformationSystemInteractiveDemo() {
   const [activeModule, setActiveModule] = useState<ModuleData>(modules[0]);
   const [animatedValues, setAnimatedValues] = useState<Record<string, number>>(
     {}
@@ -323,156 +319,129 @@ export default function OnlineAdmissionPortalInteractiveDemo() {
     let content: ModalContent | null = null;
 
     switch (action) {
-      case "lead-management-demo":
+      case "student-enrollment-demo":
         content = {
-          title: "Lead Management System",
+          title: "Student Enrollment Management",
           description:
-            "Capture, track, and nurture prospective student leads from multiple sources.",
+            "This is where you register new students and manage their enrollment in courses.",
           form: [
             {
-              label: "Source Channel",
-              type: "select",
-              options: ["Website", "Campaign", "Consultant", "Referral"],
-            },
-            {
-              label: "Prospect Name",
+              label: "Student Name",
               type: "text",
               placeholder: "Enter full name",
             },
             {
-              label: "Contact Number",
-              type: "tel",
-              placeholder: "Enter phone number",
+              label: "Email Address",
+              type: "email",
+              placeholder: "student@example.com",
             },
             {
-              label: "Interested Program",
-              type: "select",
-              options: ["Undergraduate", "Postgraduate", "PhD", "Diploma"],
-            },
-          ],
-        };
-        break;
-      case "application-processing-demo":
-        content = {
-          title: "Application Processing",
-          description:
-            "Streamlined workflow for application review and document verification.",
-          checklist: [
-            { item: "Application Received", status: "Completed" },
-            { item: "Document Verification", status: "In Progress" },
-            { item: "Faculty Review", status: "Pending" },
-            { item: "Final Approval", status: "Not Started" },
-          ],
-        };
-        break;
-      case "faculty-review-demo":
-        content = {
-          title: "Faculty Review Interface",
-          description:
-            "Centralized dashboard for faculty to review applications and make decisions.",
-          stats: [
-            { metric: "Pending Reviews", value: 24, trend: "Decreasing" },
-            {
-              metric: "Approved Applications",
-              value: 156,
-              trend: "Increasing",
-            },
-            { metric: "Average Time", value: 2.3, trend: "Improving" },
-          ],
-        };
-        break;
-      case "document-verification-demo":
-        content = {
-          title: "Document Verification",
-          description:
-            "Secure and efficient verification of academic and personal documents.",
-          form: [
-            {
-              label: "Document Type",
+              label: "Course Selection",
               type: "select",
               options: [
-                "Academic Transcripts",
-                "Certificates",
-                "ID Proof",
-                "Passport",
-                "Income Certificate",
+                "Computer Science",
+                "Mathematics",
+                "Physics",
+                "Chemistry",
               ],
             },
             {
-              label: "Upload Document",
+              label: "Upload Documents",
               type: "file",
-              placeholder: "Select file",
+              placeholder: "Select documents",
             },
+          ],
+        };
+        break;
+      case "attendance-demo":
+        content = {
+          title: "Attendance Tracking System",
+          description:
+            "Track student attendance with biometric scanning and automated reporting.",
+          checklist: [
+            { item: "Morning Session", status: "Present" },
+            { item: "Afternoon Session", status: "Present" },
+            { item: "Evening Session", status: "Absent" },
+            { item: "Weekly Summary", status: "Pending" },
+          ],
+        };
+        break;
+      case "lms-demo":
+        content = {
+          title: "Learning Management System",
+          description:
+            "Access course materials, videos, and assignments for your studies.",
+          stats: [
+            { paper: "Introduction to CS", citations: 15, impact: "High" },
+            { paper: "Advanced Mathematics", citations: 8, impact: "Medium" },
+            { paper: "Physics Fundamentals", citations: 3, impact: "Low" },
+          ],
+        };
+        break;
+      case "examinations-demo":
+        content = {
+          title: "Examination Management",
+          description:
+            "Schedule exams, manage online testing, and automatically grade results.",
+          form: [
+            { label: "Exam Name", type: "text", placeholder: "Midterm Exam" },
+            { label: "Subject", type: "text", placeholder: "Computer Science" },
+            { label: "Date", type: "date" },
             {
-              label: "Verification Method",
+              label: "Upload Question Paper",
+              type: "file",
+              placeholder: "Select paper",
+            },
+          ],
+        };
+        break;
+      case "finance-demo":
+        content = {
+          title: "Financial Management",
+          description:
+            "Process payments, manage scholarships, and track fee collection.",
+          form: [
+            { label: "Student ID", type: "text", placeholder: "STD-001" },
+            { label: "Amount", type: "number", placeholder: "5000" },
+            {
+              label: "Payment Method",
               type: "select",
-              options: ["Digital", "Physical", "Hybrid"],
+              options: ["Credit Card", "Debit Card", "Bank Transfer"],
             },
-            {
-              label: "Notes",
-              type: "textarea",
-              placeholder: "Additional verification notes",
-            },
+            { label: "Upload Receipt", type: "file" },
           ],
         };
         break;
-      case "crm-dashboard-demo":
+      case "analytics-demo":
         content = {
-          title: "CRM Analytics Dashboard",
+          title: "Performance Analytics Dashboard",
           description:
-            "Real-time metrics and analytics for lead and application management.",
-          events: [
+            "Monitor student performance, identify risks, and track trends.",
+          templates: [
             {
-              name: "Lead Conversion Rate",
-              date: "Live",
-              location: "Analytics",
-              attendees: 72,
+              name: "Monthly Report",
+              desc: "Comprehensive monthly performance analysis",
             },
             {
-              name: "Application Pipeline",
-              date: "Daily",
-              location: "Dashboard",
-              attendees: 890,
+              name: "Risk Alert",
+              desc: "Identify students at risk of failing",
             },
             {
-              name: "Department Reports",
-              date: "Weekly",
-              location: "Reports",
-              attendees: 0,
-            },
-          ],
-        };
-        break;
-      case "compliance-demo":
-        content = {
-          title: "NAAC Compliance Module",
-          description:
-            "Ensure all admission processes align with NAAC and institutional standards.",
-          formats: [
-            {
-              name: "NAAC Criteria",
-              desc: "Alignment with standards",
-              icon: "📋",
-            },
-            { name: "Audit Trail", desc: "Complete activity log", icon: "🔍" },
-            {
-              name: "Policy Records",
-              desc: "Compliance documentation",
-              icon: "📜",
+              name: "Trend Analysis",
+              desc: "Track performance trends over time",
             },
             {
-              name: "Quality Metrics",
-              desc: "Performance indicators",
-              icon: "📊",
+              name: "Attendance Summary",
+              desc: "Detailed attendance analytics",
             },
           ],
         };
         break;
       default:
         content = {
-          title: "Online Admission Portal",
+          title: "Student Information System",
           description:
-            "Your complete solution for managing the entire admission lifecycle—from leads to final admissions—with integrated CRM capabilities.",
+            "This system manages the complete student lifecycle from enrollment to graduation.",
         };
     }
 
@@ -611,63 +580,63 @@ export default function OnlineAdmissionPortalInteractiveDemo() {
               What This Does For You
             </h4>
             <div className="space-y-2">
-              {activeModule.id === "lead-management" && (
+              {activeModule.id === "student-enrollment" && (
                 <div className="text-center p-3 bg-white rounded-lg border border-slate-200">
                   <div className="font-medium text-slate-800 mb-1">
-                    Lead Management System
+                    Manage Student Enrollment
                   </div>
                   <div className="text-xs text-slate-600">
-                    Capture, track, and convert leads efficiently
+                    Register new students and manage course enrollment
                   </div>
                 </div>
               )}
-              {activeModule.id === "application-processing" && (
+              {activeModule.id === "attendance" && (
                 <div className="text-center p-3 bg-white rounded-lg border border-slate-200">
                   <div className="font-medium text-slate-800 mb-1">
-                    Application Processing
+                    Track Attendance
                   </div>
                   <div className="text-xs text-slate-600">
-                    Streamlined workflow for reviews and approvals
+                    Monitor student attendance with automated reports
                   </div>
                 </div>
               )}
-              {activeModule.id === "faculty-review" && (
+              {activeModule.id === "lms" && (
                 <div className="text-center p-3 bg-white rounded-lg border border-slate-200">
                   <div className="font-medium text-slate-800 mb-1">
-                    Faculty Review Interface
+                    Learning Management
                   </div>
                   <div className="text-xs text-slate-600">
-                    Centralized dashboard for decision making
+                    Access course materials and track learning progress
                   </div>
                 </div>
               )}
-              {activeModule.id === "document-verification" && (
+              {activeModule.id === "examinations" && (
                 <div className="text-center p-3 bg-white rounded-lg border border-slate-200">
                   <div className="font-medium text-slate-800 mb-1">
-                    Document Verification
+                    Manage Examinations
                   </div>
                   <div className="text-xs text-slate-600">
-                    Secure and efficient document authentication
+                    Schedule exams and process results automatically
                   </div>
                 </div>
               )}
-              {activeModule.id === "crm-dashboard" && (
+              {activeModule.id === "finance" && (
                 <div className="text-center p-3 bg-white rounded-lg border border-slate-200">
                   <div className="font-medium text-slate-800 mb-1">
-                    CRM Analytics
+                    Financial Management
                   </div>
                   <div className="text-xs text-slate-600">
-                    Real-time metrics and reporting
+                    Process payments and manage financial aid
                   </div>
                 </div>
               )}
-              {activeModule.id === "compliance" && (
+              {activeModule.id === "analytics" && (
                 <div className="text-center p-3 bg-white rounded-lg border border-slate-200">
                   <div className="font-medium text-slate-800 mb-1">
-                    NAAC Compliance
+                    Performance Analytics
                   </div>
                   <div className="text-xs text-slate-600">
-                    Audit-ready records and policy alignment
+                    Monitor student performance and identify risks
                   </div>
                 </div>
               )}
@@ -757,7 +726,7 @@ export default function OnlineAdmissionPortalInteractiveDemo() {
                               >
                                 <Upload className="w-8 h-8 text-slate-400 mx-auto mb-2" />
                                 <p className="text-slate-600 text-sm font-medium">
-                                  Click to Upload
+                                  Click to Upload Document
                                 </p>
                                 <p className="text-slate-500 text-xs mt-1">
                                   PDF, DOC, JPG up to 10MB
@@ -889,23 +858,68 @@ export default function OnlineAdmissionPortalInteractiveDemo() {
                             className="p-3 border border-slate-200 rounded-lg"
                           >
                             <div className="font-medium text-slate-800">
-                              {stat.metric}
+                              {stat.paper}
                             </div>
                             <div className="flex justify-between mt-2">
                               <span className="text-slate-600">
-                                Count: {stat.value}
+                                Citations: {stat.citations}
                               </span>
                               <span
                                 className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                  stat.trend === "High"
+                                  stat.impact === "High"
                                     ? "bg-red-100 text-red-800"
-                                    : stat.trend === "Medium"
+                                    : stat.impact === "Medium"
                                     ? "bg-yellow-100 text-yellow-800"
                                     : "bg-green-100 text-green-800"
                                 }`}
                               >
-                                {stat.trend}
+                                {stat.impact}
                               </span>
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+
+                  {/* Publications Content */}
+                  {modalContent?.publications && (
+                    <div className="space-y-3">
+                      {modalContent.publications.map(
+                        (pub: PublicationItem, index: number) => (
+                          <div
+                            key={index}
+                            className="p-3 border border-slate-200 rounded-lg"
+                          >
+                            <div className="font-medium text-slate-800">
+                              {pub.title}
+                            </div>
+                            <div className="text-sm text-slate-600">
+                              {pub.journal} ({pub.year})
+                            </div>
+                            <div className="text-sm text-slate-500 mt-1">
+                              Citations: {pub.citations}
+                            </div>
+                          </div>
+                        )
+                      )}
+                    </div>
+                  )}
+
+                  {/* Timeline Content */}
+                  {modalContent?.timeline && (
+                    <div className="space-y-4">
+                      {modalContent.timeline.map(
+                        (item: TimelineItem, index: number) => (
+                          <div key={index} className="flex">
+                            <div className="mr-4 text-slate-500 min-w-[60px]">
+                              {item.year}
+                            </div>
+                            <div className="flex-1 pb-4 border-l-2 border-slate-200 pl-4 relative">
+                              <div className="absolute -left-2.5 top-1 w-5 h-5 rounded-full bg-[#0494e2] border-4 border-white"></div>
+                              <div className="font-medium text-slate-800">
+                                {item.event}
+                              </div>
                             </div>
                           </div>
                         )
@@ -927,10 +941,7 @@ export default function OnlineAdmissionPortalInteractiveDemo() {
                             </div>
                             <div className="flex justify-between text-sm text-slate-600">
                               <span>{event.date}</span>
-                              <span>{event.location}</span>
-                            </div>
-                            <div className="text-sm text-slate-500 mt-1">
-                              Metrics: {event.attendees}
+                              <span className="capitalize">{event.type}</span>
                             </div>
                           </div>
                         )
@@ -1007,7 +1018,7 @@ export default function OnlineAdmissionPortalInteractiveDemo() {
                         <div className="mt-4 border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:border-[#0494e2] transition-colors">
                           <Upload className="w-8 h-8 text-slate-400 mx-auto mb-2" />
                           <p className="text-slate-600 text-sm">
-                            Click to upload
+                            Click to upload document
                           </p>
                           <p className="text-slate-500 text-xs mt-1">
                             PDF, JPG, PNG up to 10MB

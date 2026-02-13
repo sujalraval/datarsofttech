@@ -14,7 +14,6 @@ import {
   ClipboardList,
   BookOpen,
   Rocket,
-  School,
   Layout,
   Network,
   BriefcaseBusiness,
@@ -23,6 +22,7 @@ import {
   Cloud,
   ChevronRight,
   Building,
+  School,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -41,7 +41,8 @@ const solutions: Solution[] = [
   {
     title: "Alumni Portal System",
     subtitle: "Alumni Management",
-    description: "Building lifelong connections beyond campus with global networking.",
+    description:
+      "Building lifelong connections beyond campus with global networking.",
     slug: "/solutions/alumni-portal",
     icon: Users,
     category: "Community",
@@ -65,7 +66,8 @@ const solutions: Solution[] = [
   {
     title: "Conference Management System",
     subtitle: "Conference Management",
-    description: "One Platform. Complete Conference Lifecycle for academic events.",
+    description:
+      "One Platform. Complete Conference Lifecycle for academic events.",
     slug: "/solutions/conference-management",
     icon: CalendarDays,
     category: "Events",
@@ -73,7 +75,8 @@ const solutions: Solution[] = [
   {
     title: "Aacharyaa Faculty Management",
     subtitle: "Complete Academic Profile Management",
-    description: "One Platform for Your Complete Academic Profile. Manage. Showcase. Report.",
+    description:
+      "One Platform for Your Complete Academic Profile. Manage. Showcase. Report.",
     slug: "/solutions/aacharyaa-faculty-management",
     icon: GraduationCap,
     category: "Academic",
@@ -122,7 +125,8 @@ const solutions: Solution[] = [
   {
     title: "Institutional Website & Campus Portal",
     subtitle: "Institutional Portal",
-    description: "Centralized platform for universities and multi-campus institutions.",
+    description:
+      "Centralized platform for universities and multi-campus institutions.",
     slug: "/solutions/institutional-website-campus-portal",
     icon: Building,
     category: "Institution",
@@ -130,7 +134,8 @@ const solutions: Solution[] = [
   {
     title: "Online Recruitment System",
     subtitle: "Academic Hiring",
-    description: "Smart & compliant platform for faculty recruitment with UGC compliance.",
+    description:
+      "Smart & compliant platform for faculty recruitment with UGC compliance.",
     slug: "/solutions/online-recruitment-system",
     icon: Users,
     category: "HR",
@@ -138,7 +143,8 @@ const solutions: Solution[] = [
   {
     title: "Research Journal",
     subtitle: "Academic Publishing",
-    description: "Modern research journal platform for universities and departments.",
+    description:
+      "Modern research journal platform for universities and departments.",
     slug: "/solutions/research-journal",
     icon: BookOpen,
     category: "Research",
@@ -178,7 +184,8 @@ const solutions: Solution[] = [
   {
     title: "Online Recruitment System",
     subtitle: "Academic Hiring",
-    description: "Smart & compliant platform for faculty recruitment with UGC compliance.",
+    description:
+      "Smart & compliant platform for faculty recruitment with UGC compliance.",
     slug: "/solutions/online-recruitment-system",
     icon: UserPlus,
     category: "Operations",
@@ -249,7 +256,10 @@ export default function SolutionsSection() {
       : solutions.filter((s) => s.category === activeCategory);
 
   return (
-    <section id="solutions" className="relative bg-white py-24 border-y border-slate-200">
+    <section
+      id="solutions"
+      className="relative bg-white py-24 border-y border-slate-200"
+    >
       {/* Subtle background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(59,130,246,0.05),transparent_50%)] pointer-events-none"></div>
 

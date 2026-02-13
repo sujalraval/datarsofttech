@@ -13,9 +13,11 @@ export const ROUTES = {
   ALUMNI_PORTAL: "/solutions/alumni-portal",
   CONFERENCE_MANAGEMENT: "/solutions/conference-management",
   ONLINE_ADMISSION_PORTAL: "/solutions/online-admission-portal",
-  INSTITUTIONAL_WEBSITE_PORTAL: "/solutions/institutional-website-campus-portal",
+  INSTITUTIONAL_WEBSITE_PORTAL:
+    "/solutions/institutional-website-campus-portal",
   ONLINE_RECRUITMENT_SYSTEM: "/solutions/online-recruitment-system",
   RESEARCH_JOURNAL: "/solutions/research-journal",
+  STUDENT_INFORMATION_SYSTEM: "/solutions/student-information-system",
   ABOUT: "/about",
   CONTACT: "/contact",
 
@@ -53,6 +55,11 @@ export const NAVIGATION_ITEMS = [
     key: "research-journal",
     label: "Research Journal",
     path: ROUTES.RESEARCH_JOURNAL,
+  },
+  {
+    key: "student-information-system",
+    label: "Student Information System",
+    path: ROUTES.STUDENT_INFORMATION_SYSTEM,
   },
   {
     key: "products",
