@@ -13,20 +13,41 @@ import {
   Send,
 } from "lucide-react";
 import { useState } from "react";
+import { newsletterSchema } from "@/lib/validation";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real implementation, this would connect to your newsletter service
-    console.log("Subscribing email:", email);
-    setIsSubscribed(true);
-    setEmail("");
 
-    // Reset success message after 3 seconds
-    setTimeout(() => setIsSubscribed(false), 3000);
+    // Clear previous errors
+    setError(null);
+    setIsSubmitting(true);
+
+    try {
+      // Validate email
+      newsletterSchema.parse({ email });
+
+      // In a real implementation, this would connect to your newsletter service
+      console.log("Subscribing email:", email);
+      setIsSubscribed(true);
+      setEmail("");
+
+      // Reset success message after 3 seconds
+      setTimeout(() => setIsSubscribed(false), 3000);
+    } catch (err: any) {
+      if (err.errors && err.errors[0]) {
+        setError(err.errors[0].message);
+      } else {
+        setError("Please enter a valid email address");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <footer className="bg-slate-900/80 backdrop-blur-md text-white">
@@ -126,23 +147,38 @@ export default function Footer() {
               ) : (
                 <form
                   onSubmit={handleSubscribe}
-                  className="flex items-center bg-white/10 rounded-full overflow-hidden border border-white/20"
+                  className="flex flex-col sm:flex-row gap-3 sm:gap-0 sm:items-center bg-white/10 rounded-full overflow-hidden border border-white/20"
                 >
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your email address"
-                    className="flex-1 px-5 py-3 bg-transparent text-sm text-white 
-                    placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent text-white"
-                    required
-                  />
+                  <div className="flex-1 relative">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        if (error) setError(null);
+                      }}
+                      placeholder="Your email address"
+                      className="w-full px-5 py-3 bg-transparent text-sm text-white 
+                      placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent text-white"
+                      disabled={isSubmitting}
+                    />
+                    {error && (
+                      <div className="absolute -bottom-6 left-0 text-red-300 text-xs mt-1">
+                        {error}
+                      </div>
+                    )}
+                  </div>
                   <button
                     type="submit"
-                    className="px-4 py-3 text-white hover:text-white/80 transition-colors"
+                    className="px-4 py-3 text-white hover:text-white/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Subscribe to newsletter"
+                    disabled={isSubmitting}
                   >
-                    <Send size={18} />
+                    {isSubmitting ? (
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    ) : (
+                      <Send size={18} />
+                    )}
                   </button>
                 </form>
               )}

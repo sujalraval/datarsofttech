@@ -107,14 +107,6 @@ const solutions: Solution[] = [
     category: "Academic",
   },
   {
-    title: "Mobile Application",
-    subtitle: "Mobile Application",
-    description: "Custom mobile apps for iOS and Android platforms.",
-    slug: "/solutions/mobile-application",
-    icon: Smartphone,
-    category: "Technology",
-  },
-  {
     title: "Office Management & HRMS",
     subtitle: "Office Management",
     description: "Comprehensive HR and office task management solution.",
@@ -182,23 +174,6 @@ const solutions: Solution[] = [
     category: "Research",
   },
   {
-    title: "Online Recruitment System",
-    subtitle: "Academic Hiring",
-    description:
-      "Smart & compliant platform for faculty recruitment with UGC compliance.",
-    slug: "/solutions/online-recruitment-system",
-    icon: UserPlus,
-    category: "Operations",
-  },
-  {
-    title: "Research Journals",
-    subtitle: "Research Journals",
-    description: "Manage and publish academic research journals efficiently.",
-    slug: "/solutions/research-journals",
-    icon: BookOpen,
-    category: "Research",
-  },
-  {
     title: "Startup Management System",
     subtitle: "Startup Management",
     description: "Comprehensive solution to manage incubation programs.",
@@ -213,14 +188,6 @@ const solutions: Solution[] = [
     slug: "/solutions/student-information-system",
     icon: School,
     category: "Academic",
-  },
-  {
-    title: "Website Development",
-    subtitle: "Website Development",
-    description: "Professional and responsive web solutions.",
-    slug: "/solutions/website-development",
-    icon: Layout,
-    category: "Technology",
   },
 ];
 

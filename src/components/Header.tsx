@@ -1,66 +1,86 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
-import OptimizedImage from "@/components/common/OptimizedImage";
-import DesktopNavigation from "@/components/common/DesktopNavigation";
-import MobileNavigation from "@/components/common/MobileNavigation";
-import { ROUTES } from "@/lib/routes";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Products", href: "/products" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Contact Us", href: "/contact" },
+  ];
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
-        <div
-          className="
-            mt-2 sm:mt-4
-            flex h-14 sm:h-16 items-center justify-between
-            rounded-lg sm:rounded-xl
-            px-3 sm:px-4 lg:px-6
-            bg-slate-900/80 backdrop-blur-md
-            ring-1 ring-white/10
-            shadow-lg shadow-black/20
-            border border-white/5
-          "
-        >
-          {/* Logo */}
-          <Link href={ROUTES.HOME} className="flex items-center shrink-0">
-            <OptimizedImage
-              src="/logo.png"
-              alt="Datarsoft"
-              width={128}
-              height={36}
-              priority
-              className="w-20 sm:w-24 lg:w-32 h-auto object-contain"
-              showSkeleton={false}
-            />
+    <header className="fixed top-0 left-0 w-full z-50 px-4 md:px-8 py-3">
+      <div className="max-w-7xl mx-auto flex items-center justify-between rounded-xl border border-white/10 bg-slate-900/80 backdrop-blur-md text-white shadow-lg px-5 py-3">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/logo.png"
+            alt="logo"
+            width={128}
+            height={36}
+            className="object-contain"
+          />
+        </Link>
+
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex items-center gap-8 font-medium text-sm">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="text-white/80 hover:text-white transition"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+
+        {/* CTA Button */}
+        <div className="hidden md:flex">
+          <Link
+            href="/contact"
+            className="bg-white text-slate-900 px-5 py-2 rounded-xl font-semibold hover:bg-gray-200 transition"
+          >
+            Get Quote
           </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex text-white items-center gap-8">
-            <DesktopNavigation />
-          </nav>
-
-          {/* Right Section */}
-          <div className="flex items-center gap-2 lg:gap-3 shrink-0">
-            {/* CTA (Desktop only) */}
-            <div className="hidden lg:block">
-              <Link
-                href={ROUTES.CONTACT}
-                className="
-                  rounded-md px-3 py-1.5
-                  text-xs sm:text-sm font-semibold
-                  bg-[#0494e2] text-white
-                  hover:bg-[#027abc]
-                  transition whitespace-nowrap
-                "
-              >
-                Get Quote
-              </Link>
-            </div>
-
-            {/* Mobile Menu */}
-            <MobileNavigation />
-          </div>
         </div>
+
+        {/* Mobile Toggle */}
+        <button className="md:hidden" onClick={() => setOpen(!open)}>
+          {open ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="md:hidden mt-3 rounded-2xl border border-white/10 bg-slate-900/90 backdrop-blur-md text-white shadow-lg px-6 py-6 space-y-5">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="block text-lg text-white/90 hover:text-white transition"
+            >
+              {link.name}
+            </Link>
+          ))}
+
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            className="block text-center bg-white text-slate-900 px-5 py-3 rounded-xl font-semibold hover:bg-gray-200 transition"
+          >
+            Get Quote
+          </Link>
+        </div>
+      )}
     </header>
   );
 }

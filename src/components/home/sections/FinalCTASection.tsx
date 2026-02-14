@@ -1,9 +1,33 @@
+"use client";
+
 import { TYPOGRAPHY } from "@/styles/typography";
 import { SECTION_SPACING } from "@/styles/spacing";
 import { COLORS } from "@/constants/colors";
 import { Phone, Mail, Calendar, ArrowRight, CheckCircle2 } from "lucide-react";
+import { useContactForm } from "@/hooks/useContactForm";
+import { useState } from "react";
 
 export default function FinalCTASection() {
+  const {
+    formData,
+    errors,
+    isSubmitting,
+    handleChange,
+    handleSubmit,
+    resetForm,
+  } = useContactForm();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    const success = await handleSubmit(e);
+    if (success) {
+      setIsSubmitted(true);
+      resetForm();
+      // Reset success message after 3 seconds
+      setTimeout(() => setIsSubmitted(false), 3000);
+    }
+  };
+
   return (
     <section className="relative bg-white py-32 overflow-hidden">
       {/* Ambient Glow for Depth */}
@@ -85,122 +109,220 @@ export default function FinalCTASection() {
           {/* Right Column: Contact Form */}
           <div>
             <div className="bg-white border border-slate-200 rounded-2xl shadow-lg p-6 md:p-8">
-              <form className="space-y-5">
-                <div className="grid md:grid-cols-2 gap-5">
+              {isSubmitted ? (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <CheckCircle2 className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                    Request Submitted!
+                  </h3>
+                  <p className="text-slate-600">
+                    Thank you for contacting us. We&apos;ll get back to you
+                    soon.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={onSubmit} className="space-y-5">
+                  <div className="grid md:grid-cols-2 gap-5">
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-slate-700 mb-2"
+                      >
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        value={formData.name}
+                        onChange={(e) => handleChange("name", e.target.value)}
+                        className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors ${{
+                          "border-red-300 focus:ring-red-200 focus:border-red-300":
+                            errors.name,
+                          "border-slate-300": !errors.name,
+                        }}`}
+                        placeholder="Enter your name"
+                      />
+                      {errors.name && (
+                        <p className="mt-1 text-sm text-red-600">
+                          {errors.name}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-slate-700 mb-2"
+                      >
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        value={formData.email}
+                        onChange={(e) => handleChange("email", e.target.value)}
+                        className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors ${{
+                          "border-red-300 focus:ring-red-200 focus:border-red-300":
+                            errors.email,
+                          "border-slate-300": !errors.email,
+                        }}`}
+                        placeholder="Enter your email"
+                      />
+                      {errors.email && (
+                        <p className="mt-1 text-sm text-red-600">
+                          {errors.email}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
                   <div>
                     <label
-                      htmlFor="name"
+                      htmlFor="institution"
                       className="block text-sm font-medium text-slate-700 mb-2"
                     >
-                      Full Name
+                      Institution/Organization *
                     </label>
                     <input
                       type="text"
-                      id="name"
-                      className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors"
-                      placeholder="Enter your name"
+                      id="institution"
+                      value={formData.institution}
+                      onChange={(e) =>
+                        handleChange("institution", e.target.value)
+                      }
+                      className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors ${{
+                        "border-red-300 focus:ring-red-200 focus:border-red-300":
+                          errors.institution,
+                        "border-slate-300": !errors.institution,
+                      }}`}
+                      placeholder="Name of your institution"
                     />
+                    {errors.institution && (
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.institution}
+                      </p>
+                    )}
                   </div>
+
                   <div>
                     <label
-                      htmlFor="email"
+                      htmlFor="phone"
                       className="block text-sm font-medium text-slate-700 mb-2"
                     >
-                      Email Address
+                      Phone Number *
                     </label>
                     <input
-                      type="email"
-                      id="email"
-                      className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors"
-                      placeholder="Enter your email"
+                      type="tel"
+                      id="phone"
+                      value={formData.phone}
+                      onChange={(e) => handleChange("phone", e.target.value)}
+                      className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors ${{
+                        "border-red-300 focus:ring-red-200 focus:border-red-300":
+                          errors.phone,
+                        "border-slate-300": !errors.phone,
+                      }}`}
+                      placeholder="Enter your phone number"
                     />
+                    {errors.phone && (
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
-                </div>
 
-                <div>
-                  <label
-                    htmlFor="institution"
-                    className="block text-sm font-medium text-slate-700 mb-2"
+                  <div>
+                    <label
+                      htmlFor="service"
+                      className="block text-sm font-medium text-slate-700 mb-2"
+                    >
+                      Service Interest *
+                    </label>
+                    <select
+                      id="service"
+                      value={formData.service}
+                      onChange={(e) => handleChange("service", e.target.value)}
+                      className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors bg-white ${{
+                        "border-red-300 focus:ring-red-200 focus:border-red-300":
+                          errors.service,
+                        "border-slate-300": !errors.service,
+                      }}`}
+                    >
+                      <option value="">Select a service</option>
+                      <option value="erp">ERP Systems</option>
+                      <option value="website">Website Development</option>
+                      <option value="mobile">Mobile Applications</option>
+                      <option value="security">Cyber Security</option>
+                      <option value="consultation">Consultation</option>
+                    </select>
+                    {errors.service && (
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.service}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-slate-700 mb-2"
+                    >
+                      How can we help? *
+                    </label>
+                    <textarea
+                      id="message"
+                      value={formData.message}
+                      onChange={(e) => handleChange("message", e.target.value)}
+                      rows={4}
+                      className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors resize-vertical ${{
+                        "border-red-300 focus:ring-red-200 focus:border-red-300":
+                          errors.message,
+                        "border-slate-300": !errors.message,
+                      }}`}
+                      placeholder="Tell us about your requirements..."
+                    ></textarea>
+                    {errors.message && (
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.message}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="flex items-start gap-3 pt-2">
+                    <input
+                      type="checkbox"
+                      id="consent"
+                      checked={formData.consent}
+                      onChange={(e) =>
+                        handleChange("consent", e.target.checked)
+                      }
+                      className="mt-1 w-4 h-4 text-[#0494e2] border-slate-300 rounded focus:ring-[#0494e2]"
+                    />
+                    <label htmlFor="consent" className="text-sm text-slate-600">
+                      I agree to receive communications from DataSoft and
+                      understand that I can opt out at any time. *
+                    </label>
+                  </div>
+                  {errors.consent && (
+                    <p className="text-sm text-red-600">{errors.consent}</p>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 px-6 bg-[#0494e2] hover:bg-[#027abc] text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    Institution/Organization
-                  </label>
-                  <input
-                    type="text"
-                    id="institution"
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors"
-                    placeholder="Name of your institution"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-slate-700 mb-2"
-                  >
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors"
-                    placeholder="Enter your phone number"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="service"
-                    className="block text-sm font-medium text-slate-700 mb-2"
-                  >
-                    Service Interest
-                  </label>
-                  <select
-                    id="service"
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors bg-white"
-                  >
-                    <option value="">Select a service</option>
-                    <option value="erp">ERP Systems</option>
-                    <option value="website">Website Development</option>
-                    <option value="mobile">Mobile Applications</option>
-                    <option value="security">Cyber Security</option>
-                    <option value="consultation">Consultation</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-slate-700 mb-2"
-                  >
-                    How can we help?
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={4}
-                    className="w-full px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-[#0494e2] focus:border-[#0494e2] transition-colors resize-vertical"
-                    placeholder="Tell us about your requirements..."
-                  ></textarea>
-                </div>
-
-                <div className="flex items-start gap-3 pt-2">
-                  <input
-                    type="checkbox"
-                    id="consent"
-                    className="mt-1 w-4 h-4 text-[#0494e2] border-slate-300 rounded focus:ring-[#0494e2]"
-                  />
-                  <label htmlFor="consent" className="text-sm text-slate-600">
-                    I agree to receive communications from DataSoft and
-                    understand that I can opt out at any time.
-                  </label>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-3.5 px-6 bg-[#0494e2] hover:bg-[#027abc] text-white font-semibold rounded-lg transition-colors shadow-md hover:shadow-lg"
-                >
-                  Submit Request
-                </button>
-              </form>
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Submitting...
+                      </>
+                    ) : (
+                      "Submit Request"
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>

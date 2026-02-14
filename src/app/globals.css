@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ---------------------------
-   Global layout fixes
+   Base Reset
 ---------------------------- */
 
 html,
@@ -10,8 +10,32 @@ body {
   overflow-x: hidden;
 }
 
-/* Prevent fixed elements from causing overflow */
-#__next {
-  width: 100%;
-  overflow-x: hidden;
+body {
+  scrollbar-gutter: stable;
+}
+
+/* ---------------------------
+   Dynamic Header Height
+---------------------------- */
+
+:root {
+  --header-height: 64px;
+}
+
+/* Notch phones (iPhone etc.) */
+@supports (padding: max(0px)) {
+  :root {
+    --header-height: calc(64px + env(safe-area-inset-top));
+  }
+}
+
+/* Reusable spacing for first section of any page */
+.page-start {
+  padding-top: calc(var(--header-height) + 2rem);
+}
+
+@media (min-width: 640px) {
+  .page-start {
+    padding-top: calc(var(--header-height) + 2.5rem);
+  }
 }
