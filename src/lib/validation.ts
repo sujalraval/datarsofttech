@@ -47,7 +47,7 @@ export const validateField = (schema: z.ZodSchema, field: string, value: unknown
     return null;
   } catch (error) {
     if (error instanceof z.ZodError) {
-      const fieldError = error.errors.find(err => err.path[0] === field);
+      const fieldError = error.issues.find((err: z.ZodIssue) => err.path[0] === field);
       return fieldError?.message || 'Invalid input';
     }
     return 'Invalid input';
